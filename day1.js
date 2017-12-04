@@ -21,4 +21,4 @@ function day1(input) {
 }
 
 
-fs.readFile('day1/input','utf-8', (err, data) => { console.log(day1(data)) });
+fs.readFile('input/day1','utf-8', (err, data) => { console.log(day1(data)) });
