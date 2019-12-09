@@ -2,81 +2,89 @@ import operator
 
 class intcode_computer:
   
-  def __init__(self, program, input_values=[]):
+  def __init__(self, program, input_values=[], stop_on_output=False):
     self.pointer = 0
     self.program = list(program)
     self.opcodes = {
-      1: self.addition, 2: self.multiplication, 
-      3: self.input, 4: self.output, 
-      5: self.jump(operator.ne), 6: self.jump(operator.eq),
-      7: self.comp(operator.lt), 8: self.comp(operator.eq),
-      9: self.shift_base,
-      99: lambda _: True}
+      1: self._addition, 2: self._multiplication, 
+      3: self._input, 4: self._output, 
+      5: self._jump(operator.ne), 6: self._jump(operator.eq),
+      7: self._comp(operator.lt), 8: self._comp(operator.eq),
+      9: self._shift_base,
+      99: self._halt}
     self.input_values = input_values
     self.output_values = []
     self.rel_base = 0
+    self.stop_on_output = stop_on_output
+    self.halted = False
 
   def __repr__(self):
     return '\n'.join([str(e) for e in self.output_values])
   
-  def read(self, mode='1'):
+  def _read(self, mode='1'):
     if(mode == '0'): address = self.program[self.pointer]
     elif(mode == '1'): address = self.pointer
     elif(mode == '2'): address = self.program[self.pointer] + self.rel_base
     else: raise Exception('Unknown parameter mode')
-    self.resize_memory(address)
+    self._resize_memory(address)
     self.pointer += 1
     return self.program[address]
 
-  def write(self, value, mode='0'):
-    if(mode == '0'): address = self.read()
-    elif(mode == '2'): address = self.read() + self.rel_base
+  def _write(self, value, mode='0'):
+    if(mode == '0'): address = self._read()
+    elif(mode == '2'): address = self._read() + self.rel_base
     else: raise Exception('Unknown parameter mode')
-    self.resize_memory(address)
+    self._resize_memory(address)
     self.program[address] = value
 
-  def resize_memory(self, address):
+  def _resize_memory(self, address):
     if(address > len(self.program)-1):
       self.program += [0] * (address - len(self.program) +1)
   
-  def parse_instruction(self, instr): # returns (opcode, modes)
+  def _parse_instruction(self, instr): # returns (opcode, modes)
     return (instr % 100, str(instr // 100).zfill(3)[::-1])
 
-  def addition(self, modes):
-    self.write(self.read(modes[0]) + self.read(modes[1]), modes[2])
+  def _addition(self, modes):
+    self._write(self._read(modes[0]) + self._read(modes[1]), modes[2])
 
-  def multiplication(self, modes):
-    self.write(self.read(modes[0]) * self.read(modes[1]), modes[2])
+  def _multiplication(self, modes):
+    self._write(self._read(modes[0]) * self._read(modes[1]), modes[2])
 
-  def input(self, modes):
-    self.write(self.input_values.pop(), modes[0])
+  def _input(self, modes):
+    self._write(self.input_values.pop(0), modes[0])
 
-  def output(self, modes):
-    self.output_values.append(self.read(modes[0]))
+  def _output(self, modes):
+    self.output_values.append(self._read(modes[0]))
+    return self.stop_on_output
 
-  def shift_base(self, modes):
-    self.rel_base += self.read(modes[0])
+  def _shift_base(self, modes):
+    self.rel_base += self._read(modes[0])
 
-  def jump(self, op): # jumps to arg1 if op(arg0,0) is true
-    def _jump(modes):
-      if op(self.read(modes[0]), 0):
-        self.pointer = self.read(modes[1])
+  def _jump(self, op): # jumps to arg1 if op(arg0,0) is true
+    def __jump(modes):
+      if op(self._read(modes[0]), 0):
+        self.pointer = self._read(modes[1])
       else: self.pointer += 1
-    return _jump
+    return __jump
     
-  def comp(self, op): # writes 1/0 if op(arg0, arg1) is true/false
-    def _comp(modes):
-      if op(self.read(modes[0]), self.read(modes[1])):
-        self.write(1, modes[2])
+  def _comp(self, op): # writes 1/0 if op(arg0, arg1) is true/false
+    def __comp(modes):
+      if op(self._read(modes[0]), self._read(modes[1])):
+        self._write(1, modes[2])
       else:
-        self.write(0, modes[2])
-    return _comp
+        self._write(0, modes[2])
+    return __comp
+
+  def _halt(self, modes):
+    self.halted = True
+    return True
 
   def execute(self, debug=False):
     while self.step(debug) is not True: pass
+    if debug: print(self.output_values)
     return self
 
   def step(self, debug=False):
-    (opcode, modes) = self.parse_instruction(self.read())
+    (opcode, modes) = self._parse_instruction(self._read())
     if debug: print(self.pointer, opcode, modes)
     return self.opcodes[opcode](modes)
