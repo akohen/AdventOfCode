@@ -29,10 +29,8 @@ class intcode_computer:
     return self.program[address]
 
   def write(self, value, mode='0'):
-    if(mode == '0'):
-      address = self.read()
-    elif(mode == '2'):
-      address = self.read() + self.rel_base
+    if(mode == '0'): address = self.read()
+    elif(mode == '2'): address = self.read() + self.rel_base
     else: raise Exception('Unknown parameter mode')
     self.resize_memory(address)
     self.program[address] = value
@@ -82,4 +80,3 @@ class intcode_computer:
     (opcode, modes) = self.parse_instruction(self.read())
     if debug: print(self.pointer, opcode, modes)
     return self.opcodes[opcode](modes)
-
