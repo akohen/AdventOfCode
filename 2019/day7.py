@@ -8,7 +8,7 @@ def find_max(program, phase):
     max_phase = max(max_phase, get_thruster_value(program, phase))
   return max_phase
 
-def get_thruster_value(prg, phase):
+def get_thruster_value(program, phase):
   current = 0
   amps = [intcode_computer(program, [phase[i]], stop_on_output=True) for i in range(5)]
   amps[0].input_values.append(0)
