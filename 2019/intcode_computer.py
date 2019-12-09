@@ -20,16 +20,13 @@ class intcode_computer:
     return '\n'.join([str(e) for e in self.output_values])
   
   def read(self, mode='1'):
-    value = self.program[self.pointer]
-    self.pointer += 1
-    if(mode == '0'):
-      self.resize_memory(value)
-      return self.program[value]
-    elif(mode == '1'): return value
-    elif(mode == '2'):
-      self.resize_memory(self.rel_base + value)
-      return self.program[self.rel_base + value]
+    if(mode == '0'): address = self.program[self.pointer]
+    elif(mode == '1'): address = self.pointer
+    elif(mode == '2'): address = self.program[self.pointer] + self.rel_base
     else: raise Exception('Unknown parameter mode')
+    self.resize_memory(address)
+    self.pointer += 1
+    return self.program[address]
 
   def write(self, value, mode='0'):
     if(mode == '0'):
