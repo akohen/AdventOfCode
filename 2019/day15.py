@@ -32,14 +32,11 @@ def map_maze(comp):
     direction = get_direction(position,last_wall)
     target_pos = move[direction](position)
     comp.input_values.append(direction)
-    comp.execute()
-    out = comp.output_values.pop()
+    out = comp.execute().output_values.pop()
     maze[target_pos] = out
-    if out == 1: position = target_pos
     if out == 0: last_wall = target_pos
-    if out == 2: 
-      position = target_pos
-      exit_position = target_pos
+    else: position = target_pos
+    if out == 2: exit_position = target_pos
   return (maze, exit_position)
 
 def find_shortest_path(p_start, p_goal, maze):
