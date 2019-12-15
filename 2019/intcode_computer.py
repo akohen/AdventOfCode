@@ -88,3 +88,10 @@ class intcode_computer:
     (opcode, modes) = self._parse_instruction(self._read())
     if debug: print(self.pointer, opcode, modes)
     return self.opcodes[opcode](modes)
+
+  def input(self, value):
+    self.input_values.append(value)
+    return self
+
+  def output(self):
+    return self.output_values.pop()

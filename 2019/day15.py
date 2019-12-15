@@ -31,8 +31,7 @@ def map_maze(comp):
   for i in range(5000):
     direction = get_direction(position,last_wall)
     target_pos = move[direction](position)
-    comp.input_values.append(direction)
-    out = comp.execute().output_values.pop()
+    out = comp.input(direction).execute().output()
     maze[target_pos] = out
     if out == 0: last_wall = target_pos
     else: position = target_pos
