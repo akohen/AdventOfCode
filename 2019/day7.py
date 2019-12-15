@@ -12,12 +12,11 @@ def get_thruster_value(program, phase):
   current = 0
   amps = [intcode_computer(program, [phase[i]], stop_on_output=True) for i in range(5)]
   amps[0].input_values.append(0)
-  while(amps[current].halted is not True):
+  while True:
     amps[current].execute()
-    if(len(amps[current].output_values)):
+    if len(amps[current].output_values):
       out = amps[current].output_values.pop()
-    else:
-      return out
+    else: return out
     current = (current + 1) % 5
     amps[current].input_values.append(out)
 
