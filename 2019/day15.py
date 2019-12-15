@@ -38,16 +38,15 @@ def map_maze(comp):
     if out == 2: exit_position = target_pos
   return (maze, exit_position)
 
-def find_shortest_path(p_start, p_goal, maze):
-  seen = defaultdict(lambda:99999)
+def find_shortest_path(p_start, maze):
+  seen = {p_start:0}
   to_open = [p_start]
-  seen[p_start] = 0
   while len(to_open) > 0:
-    current = to_open.pop()
+    current = to_open.pop(0)
     for i in range(1,5):
       p = move[i](current)
       if maze[p] > 0 and p not in seen:
-        seen[p] = min(seen[p], seen[current] + 1)
+        seen[p] = seen[current] + 1
         to_open.append(p)
   return seen
 
@@ -61,6 +60,6 @@ if __name__ == "__main__":
     comp = intcode_computer([int(i) for i in next(f).split(',')], stop_on_output=True)
     (maze, exit_position) = map_maze(comp)
     # print_maze(maze)
-    shortest = find_shortest_path(exit_position, (0,0), maze)
+    shortest = find_shortest_path(exit_position, maze)
     print(shortest[(0,0)])
     print(max(shortest.iteritems(), key=operator.itemgetter(1))[1])
