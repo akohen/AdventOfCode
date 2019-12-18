@@ -51,6 +51,9 @@ class intcode_computer:
     self._write(self._read(modes[0]) * self._read(modes[1]), modes[2])
 
   def _input(self, modes):
+    if len(self.input_values) == 0:
+      self.pointer -= 1
+      return True
     self._write(self.input_values.pop(0), modes[0])
 
   def _output(self, modes):
@@ -95,3 +98,7 @@ class intcode_computer:
 
   def output(self):
     return self.output_values.pop()
+
+  def clear(self):
+    del self.output_values[:]
+    return self
