@@ -93,7 +93,8 @@ class intcode_computer:
     return self.opcodes[opcode](modes)
 
   def input(self, value):
-    self.input_values.append(value)
+    if isinstance(value, list): self.input_values += value
+    else: self.input_values.append(value)
     return self
 
   def output(self):
@@ -102,3 +103,11 @@ class intcode_computer:
   def clear(self):
     del self.output_values[:]
     return self
+
+  def interactive(self):
+    def string_2_ASCII(string):
+      return [ord(c) for c in string] + [10]
+    while self.halted == False:
+      print("".join(map(chr,self.execute().output_values)))
+      self.input_values = string_2_ASCII(input(">"))
+      self.clear()
