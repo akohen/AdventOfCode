@@ -97,6 +97,10 @@ class intcode_computer:
     else: self.input_values.append(value)
     return self
 
+  def input_ASCII(self, values):
+    self.input([ord(c) for c in values] + [10])
+    return self
+
   def output(self):
     return self.output_values.pop()
 
