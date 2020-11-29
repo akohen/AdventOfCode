@@ -24,4 +24,4 @@ if __name__ == "__main__":
     layers = to_layers(next(f), 25 * 6)
     print(phase1(layers))
     for line in phase2(layers, 25, 6):
-      print ''.join(map(str, line)).replace('1','.').replace('0',' ')
+      print(''.join(map(str, line)).replace('1','.').replace('0',' '))
