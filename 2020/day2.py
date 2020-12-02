@@ -8,13 +8,7 @@ def phase1(policies):
     return len([1 for p in policies if p["password"].count(p["char"]) <= p["max"] and p["password"].count(p["char"]) >= p["min"] ])
 
 def phase2(policies):
-    def is_valid(p):
-        if p["password"][p["min"]-1] == p["password"][p["max"]-1]:
-            return False
-        if p["password"][p["min"]-1] != p["char"] and p["password"][p["max"]-1] != p["char"]:
-            return False
-        return True
-    return len([1 for policy in policies if is_valid(policy)])
+    return len([1 for p in policies if ((p["password"][p["min"]-1] == p["char"]) ^ (p["password"][p["max"]-1] == p["char"]))])
 
 if __name__ == "__main__":
     with Path(__file__).parent.joinpath("input/day2_sample" if test_mode else "input/day2").open() as f:
