@@ -2,8 +2,6 @@ from pathlib import Path
 import sys
 import re
 
-test_mode = True if len(sys.argv) > 1 and sys.argv[1] == "test" else False
-
 
 def is_complete(p):
     for key in ["byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"]:
@@ -49,7 +47,7 @@ def load(data):
     return passports
 
 if __name__ == "__main__":
-    with Path(__file__).parent.joinpath("input/day4_sample" if test_mode else "input/day4").open() as f:
+    with Path(__file__).parent.joinpath("input/day4").open() as f:
         PASSPORTS = load(f.read())
 
         print('Phase 1: {}'.format(phase1(PASSPORTS)))
