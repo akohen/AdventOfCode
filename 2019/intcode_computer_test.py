@@ -1,5 +1,6 @@
 from unittest import TestCase, main
 from intcode_computer import intcode_computer
+from pathlib import Path
 import day7
 
 class TestDay(TestCase):
@@ -22,12 +23,12 @@ class TestDay(TestCase):
     self.assertEqual(result,54321)
 
   def test_day7_phase1(self):
-    with open('./input/day7') as f:
+    with Path(__file__).parent.joinpath("input/day7").open() as f:
       result = day7.find_max([int(i) for i in next(f).split(',')], [0, 1, 2, 3, 4])
       self.assertEqual(result, 225056)
 
   def test_day7_phase2(self):
-    with open('./input/day7') as f:
+    with Path(__file__).parent.joinpath("input/day7").open() as f:
       result = day7.find_max([int(i) for i in next(f).split(',')], [5, 6, 7, 8, 9])
       self.assertEqual(result, 14260332)
 
