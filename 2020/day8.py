@@ -1,6 +1,5 @@
 from pathlib import Path
 import sys
-import regex
 
 test_mode = True if len(sys.argv) > 1 and sys.argv[1] == "test" else False
 
