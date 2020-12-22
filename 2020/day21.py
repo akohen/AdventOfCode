@@ -20,7 +20,7 @@ def phase1(data):
 
     allergens = {}
     has_allergen = []
-    for i in range(len(possible_ingredients)):
+    for _ in range(len(possible_ingredients)):
         for allergen in possible_ingredients:
             if len(possible_ingredients[allergen]) == 1:
                 ingredient = possible_ingredients[allergen].pop()
@@ -40,9 +40,6 @@ def phase1(data):
         canonical_list += allergens[allergen]+","
     return total, canonical_list[:-1]
 
-def phase2(data):
-    return 2
-
 def load(data):
     result = []
     for line in data:
@@ -56,5 +53,4 @@ if __name__ == "__main__":
     with Path(__file__).parent.joinpath("input/day21_sample" if TEST_MODE else "input/day21").open() as f:
         DATA = load([line.strip() for line in f])
 
-        print('Phase 1: {}'.format(phase1(DATA)))
-        print('Phase 2: {}'.format(phase2(DATA)))
+        print('Phase 1: {}\nPhase 2: {}'.format(*phase1(DATA)))
