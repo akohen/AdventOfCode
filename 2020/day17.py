@@ -19,7 +19,7 @@ def count_neighbors(cube, data):
 def phase1(data):
     a = [0,0,0]
     b = [8,8,0]
-    for i in range(6):
+    for _ in range(6):
         next_a = a
         next_b = b
         next_cycle = defaultdict(lambda: defaultdict(dict))
@@ -68,7 +68,7 @@ def count_neighbors_4(cube, data):
 def phase2(data):
     a = [0,0,0,0]
     b = [8,8,0,0]
-    for i in range(6):
+    for _ in range(6):
         next_a = a
         next_b = b
         next_cycle = defaultdict(lambda: defaultdict(lambda: defaultdict(dict)))
