@@ -70,5 +70,5 @@ if __name__ == "__main__":
     with Path(__file__).parent.joinpath("input/day16_sample2" if TEST_MODE else "input/day16").open() as f:
         RULES, YOUR_TICKET, TICKETS = load([line.split("\n") for line in f.read().split("\n\n")])
 
-        print('Phase 1: {}'.format(phase1(RULES, TICKETS)))
-        print('Phase 2: {}'.format(phase2(RULES, TICKETS, YOUR_TICKET)))
+        print(f'Phase 1: {phase1(RULES, TICKETS)}')
+        print(f'Phase 2: {phase2(RULES, TICKETS, YOUR_TICKET)}')

@@ -2,7 +2,7 @@ from pathlib import Path
 import sys
 import regex
 
-test_mode = True if len(sys.argv) > 1 and sys.argv[1] == "test" else False
+TEST_MODE = bool(len(sys.argv) > 1 and sys.argv[1] == "test")
 
 def phase1(rules):
     total = 0
@@ -40,8 +40,8 @@ def load(data):
     return rules
 
 if __name__ == "__main__":
-    with Path(__file__).parent.joinpath("input/day7_sample" if test_mode else "input/day7").open() as f:
+    with Path(__file__).parent.joinpath("input/day7_sample" if TEST_MODE else "input/day7").open() as f:
         data = load([line.rstrip("\n") for line in f])
         
-        print('Phase 1: {}'.format(phase1(data)))
-        print('Phase 2: {}'.format(phase2(data)))
+        print(f'Phase 1: {phase1(data)}')
+        print(f'Phase 2: {phase2(data)}')

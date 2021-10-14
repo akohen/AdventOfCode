@@ -78,5 +78,5 @@ if __name__ == "__main__":
     with Path(__file__).parent.joinpath("input/day20_sample" if TEST_MODE else "input/day20").open() as f:
         DATA, EDGES = load([line.split("\n") for line in f.read().split("\n\n")])
 
-        print('Phase 1: {}'.format(phase1(DATA)))
-        #print('Phase 2: {}'.format(phase2(DATA)))
+        print(f'Phase 1: {phase1(DATA)}')
+        #print(f'Phase 2: {phase2(DATA)}')

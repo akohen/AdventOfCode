@@ -57,5 +57,5 @@ if __name__ == "__main__":
     with Path(__file__).parent.joinpath("input/day22_sample" if TEST_MODE else "input/day22").open() as f:
         P1, P2 = [load(line.split("\n")) for line in f.read().split("\n\n")]
 
-        print('Phase 1: {}'.format(phase1([P1.copy(), P2.copy()])))
-        print('Phase 2: {}'.format(phase2([P1, P2])))
+        print(f'Phase 1: {phase1([P1.copy(), P2.copy()])}')
+        print(f'Phase 2: {phase2([P1, P2])}')

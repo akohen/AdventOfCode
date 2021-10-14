@@ -51,5 +51,5 @@ if __name__ == "__main__":
     with Path(__file__).parent.joinpath("input/day13_sample" if TEST_MODE else "input/day13").open() as f:
         TIMESTAMP, SCHEDULE = load(f.read())
 
-        print('Phase 1: {}'.format(phase1(TIMESTAMP, SCHEDULE)))
-        print('Phase 2: {}'.format(phase2(SCHEDULE)))
+        print(f'Phase 1: {phase1(TIMESTAMP, SCHEDULE)}')
+        print(f'Phase 2: {phase2(SCHEDULE)}')

@@ -2,7 +2,7 @@ from pathlib import Path
 import sys
 import re
 
-test_mode = True if len(sys.argv) > 1 and sys.argv[1] == "test" else False
+TEST_MODE = bool(len(sys.argv) > 1 and sys.argv[1] == "test")
 
 def calc_at_second(data, second):
     points = []
@@ -41,7 +41,7 @@ def phase1(data):
             return i-1
 
 if __name__ == "__main__":
-    with Path(__file__).parent.joinpath("input/day10_sample" if test_mode else "input/day10").open() as f:
+    with Path(__file__).parent.joinpath("input/day10_sample" if TEST_MODE else "input/day10").open() as f:
         points =  [
             [int(i) for i in matches.group(1,2,3,4)] 
             for line in f if (matches := re.match(r"^position=<\s*(-?\d+),\s*(-?\d+)> velocity=<\s*(-?\d+),\s*(-?\d+)>$", line))]

@@ -116,5 +116,5 @@ if __name__ == "__main__":
     with Path(__file__).parent.joinpath("input/day17_sample" if TEST_MODE else "input/day17").open() as f:
         DATA, P2 = load([line.strip() for line in f])
 
-        print('Phase 1: {}'.format(phase1(DATA)))
-        print('Phase 2: {}'.format(phase2(P2)))
+        print(f'Phase 1: {phase1(DATA)}')
+        print(f'Phase 2: {phase2(P2)}')

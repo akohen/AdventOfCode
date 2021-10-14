@@ -50,5 +50,6 @@ if __name__ == "__main__":
     with Path(__file__).parent.joinpath("input/day4").open() as f:
         PASSPORTS = load(f.read())
 
-        print('Phase 1: {}'.format(phase1(PASSPORTS)))
-        print('Phase 2: {}'.format(phase2(PASSPORTS)))
+        print(f'Phase 1: {phase1(PASSPORTS)}')
+        print(f'Phase 2: {phase2(PASSPORTS)}')
+

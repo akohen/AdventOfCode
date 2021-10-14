@@ -2,7 +2,7 @@ from pathlib import Path
 import sys
 import re
 
-test_mode = True if len(sys.argv) > 1 and sys.argv[1] == "test" else False
+TEST_MODE = bool(len(sys.argv) > 1 and sys.argv[1] == "test")
 
 def phase2(grid):
     best, best_box = 0, ()
@@ -37,7 +37,7 @@ def largest(size, grid):
     return best, best_coords
 
 if __name__ == "__main__":
-    serial = 42 if test_mode else 7989
+    serial = 42 if TEST_MODE else 7989
     grid = get_grid(serial)
     print('Phase 1: {}'.format(largest(3, grid)))
     print('Phase 2: {}'.format(phase2(grid)))

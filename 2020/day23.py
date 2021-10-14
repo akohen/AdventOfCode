@@ -40,5 +40,5 @@ def load(data):
 if __name__ == "__main__":
     DATA = load("389125467" if TEST_MODE else "247819356")
 
-    print('Phase 1: {}'.format(phase1(DATA,100)))
-    print('Phase 2: {}'.format(phase2(DATA)))
+    print(f'Phase 1: {phase1(DATA,100)}')
+    print(f'Phase 2: {phase2(DATA)}')

@@ -23,5 +23,5 @@ if __name__ == "__main__":
     with Path(__file__).parent.joinpath("input/day6").open() as f:
         answers = load(f.read())
 
-        print('Phase 1: {}'.format(phase1(answers)))
-        print('Phase 2: {}'.format(phase2(answers)))
+        print(f'Phase 1: {phase1(answers)}')
+        print(f'Phase 2: {phase2(answers)}')

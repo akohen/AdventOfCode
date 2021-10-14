@@ -1,7 +1,7 @@
 from pathlib import Path
 import sys
 
-test_mode = True if len(sys.argv) > 1 and sys.argv[1] == "test" else False
+TEST_MODE = bool(len(sys.argv) > 1 and sys.argv[1] == "test")
 
 def execute_steps(steps):
     def pop_step(i):
@@ -65,11 +65,11 @@ def execute_steps_workers(steps, worker_count=2, task_time=1):
     return (done, total_time)
 
 if __name__ == "__main__":
-    with Path(__file__).parent.joinpath("input/day7_sample" if test_mode else "input/day7").open() as f:
+    with Path(__file__).parent.joinpath("input/day7_sample" if TEST_MODE else "input/day7").open() as f:
         instructions = [(ord(line[5])-65,ord(line[36])-65) for line in f]
-        step_count = 6 if test_mode else 26
-        worker_count = 2 if test_mode else 15
-        task_time = 1 if test_mode else 61
+        step_count = 6 if TEST_MODE else 26
+        worker_count = 2 if TEST_MODE else 15
+        task_time = 1 if TEST_MODE else 61
         steps = [[] for i in range(step_count)]
         steps2 = [[] for i in range(step_count)]
         for line in instructions:

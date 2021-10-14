@@ -23,5 +23,5 @@ if __name__ == "__main__":
         boarding_passes = [line.strip() for line in f]
         seats = get_seats(boarding_passes)
 
-        print('Phase 1: {}'.format(phase1(seats)))
-        print('Phase 2: {}'.format(phase2(seats)))
+        print(f'Phase 1: {phase1(seats)}')
+        print(f'Phase 2: {phase2(seats)}')

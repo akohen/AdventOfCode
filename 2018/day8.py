@@ -1,7 +1,7 @@
 from pathlib import Path
 import sys
 
-test_mode = True if len(sys.argv) > 1 and sys.argv[1] == "test" else False
+TEST_MODE = bool(len(sys.argv) > 1 and sys.argv[1] == "test")
 
 def create_node(parent, headers):
     new_node = {"children": [], "data": [], "parent": parent, "headers": headers}
@@ -35,7 +35,7 @@ def process_input(value, current):
     return current
 
 if __name__ == "__main__":
-    with Path(__file__).parent.joinpath("input/day8_sample" if test_mode else "input/day8").open() as f:
+    with Path(__file__).parent.joinpath("input/day8_sample" if TEST_MODE else "input/day8").open() as f:
 
         current = create_node(None, [])
         for i in [int(i) for i in f.read().split(' ')]:

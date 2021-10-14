@@ -27,5 +27,5 @@ if __name__ == "__main__":
         INPUT = [int(line) for line in f]
         PREAMBLE = 5 if TEST_MODE else 25
 
-        print('Phase 1: {}'.format(phase1(INPUT, PREAMBLE)))
-        print('Phase 2: {}'.format(phase2(INPUT, phase1(INPUT, PREAMBLE))))
+        print(f'Phase 1: {phase1(INPUT, PREAMBLE)}')
+        print(f'Phase 2: {phase2(INPUT, phase1(INPUT, PREAMBLE))}')

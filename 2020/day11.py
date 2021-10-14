@@ -75,5 +75,5 @@ if __name__ == "__main__":
     with Path(__file__).parent.joinpath("input/day11_sample" if TEST_MODE else "input/day11").open() as f:
         WAITAREA = [line.strip() for line in f]
 
-        print('Phase 1: {}'.format(phase1(WAITAREA)))
-        print('Phase 2: {}'.format(phase2(WAITAREA)))
+        print(f'Phase 1: {phase1(WAITAREA)}')
+        print(f'Phase 2: {phase2(WAITAREA)}')
