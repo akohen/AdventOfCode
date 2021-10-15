@@ -1,4 +1,4 @@
-import day4
+from src import day4
 
 def test_phase1():
     assert day4.phase1('abcdef',609000) == 609043

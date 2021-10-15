@@ -1,4 +1,4 @@
-import day1
+from src import day1
 
 def test_phase1():
     assert day1.phase1('()()') == 0

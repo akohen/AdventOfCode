@@ -12,7 +12,7 @@ def phase2(value):
     return None
 
 if __name__ == "__main__":
-    with Path(__file__).parent.joinpath("input/day1").open(encoding="UTF-8") as f:
+    with Path(__file__).parent.joinpath("../input/day1").open(encoding="UTF-8") as f:
         values = f.read()
 
         print(f"Phase 1: {phase1(values)}")

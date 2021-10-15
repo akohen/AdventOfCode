@@ -15,7 +15,7 @@ def phase2(values):
     return total
 
 if __name__ == "__main__":
-    with Path(__file__).parent.joinpath("input/day2").open(encoding="UTF-8") as f:
+    with Path(__file__).parent.joinpath("../input/day2").open(encoding="UTF-8") as f:
         values = f.read().splitlines()
 
         print(f"Phase 1: {phase1(values)}")

@@ -1,4 +1,4 @@
-import day3
+from src import day3
 
 def test_phase1():
     assert day3.phase1('>') == 2

@@ -1,4 +1,4 @@
-import day2
+from src import day2
 
 def test_phase1():
     assert day2.phase1(['2x3x4']) == 58
