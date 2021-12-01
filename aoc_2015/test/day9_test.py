@@ -1,4 +1,4 @@
-from src import day9
+from aoc_2015.src import day9
 
 INSTRUCTIONS = day9.parse("""London to Dublin = 464
 London to Belfast = 518

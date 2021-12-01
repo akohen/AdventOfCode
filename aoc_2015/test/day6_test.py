@@ -1,4 +1,4 @@
-from src import day6
+from aoc_2015.src import day6
 
 def test_phase1():
     assert day6.phase1(day6.prep(['turn on 499,499 through 500,500'])) == 4

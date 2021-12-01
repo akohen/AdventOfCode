@@ -1,4 +1,4 @@
-from src import day5
+from aoc_2015.src import day5
 
 def test_phase1():
     assert day5.phase1('ugknbfddgicrmopn') is True

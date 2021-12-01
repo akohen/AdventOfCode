@@ -1,4 +1,4 @@
-from src import day12
+from aoc_2015.src import day12
 
 def test_phase1():
     assert day12.phase1(day12.parse('[1,2,3]')) == 6

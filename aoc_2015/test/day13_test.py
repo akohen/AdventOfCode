@@ -1,4 +1,4 @@
-from src import day13
+from aoc_2015.src import day13
 
 INSTRUCTIONS = day13.parse("""Alice would gain 54 happiness units by sitting next to Bob.
 Alice would lose 79 happiness units by sitting next to Carol.

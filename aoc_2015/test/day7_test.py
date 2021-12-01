@@ -1,4 +1,4 @@
-from src import day7
+from aoc_2015.src import day7
 
 INSTRUCTIONS = day7.parse("""123 -> x
 456 -> y

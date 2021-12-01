@@ -1,4 +1,4 @@
-from src import day11
+from aoc_2015.src import day11
 
 def test_phase1():
     assert day11.is_valid("hijklmmn") is False
