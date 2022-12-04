@@ -11,4 +11,4 @@ def test_phase1():
     assert day.phase1(test_data) == 157
 
 def test_phase2():
-    assert day.phase2(test_data) == 12
+    assert day.phase2(test_data) == 70
