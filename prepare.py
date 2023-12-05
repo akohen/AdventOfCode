@@ -56,3 +56,6 @@ def test_day{day}():
     assert day{day}.part1(test_data) == 1
     #assert day{day}.part2(test_data) == 1
 """.format(year=sys.argv[1], day=sys.argv[2]))
+    
+print(f"https://adventofcode.com/{sys.argv[1]}/day/{sys.argv[2]}")
+print(f"https://adventofcode.com/{sys.argv[1]}/day/{sys.argv[2]}/input")
