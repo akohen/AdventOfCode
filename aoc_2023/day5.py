@@ -13,27 +13,24 @@ def part1(seeds, maps):
 
 
 def part2(seeds, maps):
-    segments = [[seeds[i], seeds[i]+seeds[i+1]-1] for i in range(0,len(seeds),2)]
+    segments = [range(seeds[i], seeds[i]+seeds[i+1]) for i in range(0,len(seeds),2)]
 
     for mapping in maps:
         segments_next, segments_unchanged = [], []
         for [dest, source, length] in mapping:
+            range_map = range(source, source+length)
             for s in segments:
-                if s[1] < source or s[0] >= source+length: # no intersection
-                    segments_unchanged.append(s)
-                else: # at least part of the segment matches
-                    if s[0] < source: # before the intersection
-                        segments_unchanged.append([s[0], source-1])
-                    if s[1] > source+length-1: # after the intersection
-                        segments_unchanged.append([source+length, s[1]])
-                    start = max(source, s[0])
-                    end = min(s[1], source+length-1)
-                    segments_next.append([start+dest-source, end+dest-source])
+                range_before = range(s.start, min(s.stop, range_map.start)) or None
+                range_inter = range(max(s.start,range_map.start), min(s.stop,range_map.stop)) or None
+                range_after = range(max(s.start, range_map.stop), s.stop) or None
+                if range_before: segments_unchanged.append(range_before)
+                if range_after: segments_unchanged.append(range_after)
+                if range_inter: segments_next.append(range(range_inter.start+dest-source, range_inter.stop+dest-source))
             segments = segments_unchanged # a segment can only be matched once, so we only recheck the parts that have not yet been matched
             segments_unchanged = []
         segments += segments_next
 
-    return min(list(zip(*segments))[0])
+    return min(s.start for s in segments)
 
 
 def parse(file):
