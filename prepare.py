@@ -1,15 +1,18 @@
 import sys
+from datetime import date
 from pathlib import Path
 
-if len(sys.argv) != 3 or not str.isdigit(sys.argv[1]) or not str.isdigit(sys.argv[2]):
-    print("usage: prepare.py year day")
-    print("   example: prepare.py 2022 24")
+year = sys.argv[1] if len(sys.argv) == 3 else str(date.today().year)
+day = sys.argv[2] if len(sys.argv) == 3 else str(date.today().day)
+
+if len(sys.argv) not in [1,3] or not str.isdigit(year) or not str.isdigit(day):
+    print("usage: prepare.py [year day]\n   example: prepare.py 2022 24")
     exit(-1)
 
 
-path_folder = Path(__file__).parent.joinpath("aoc_"+sys.argv[1])
-file_code = Path(__file__).parent.joinpath("aoc_"+sys.argv[1]+"/day"+sys.argv[2]+".py")
-file_test = Path(__file__).parent.joinpath("aoc_"+sys.argv[1]+"/day"+sys.argv[2]+"_test.py")
+path_folder = Path(__file__).parent.joinpath("aoc_"+year)
+file_code = Path(__file__).parent.joinpath("aoc_"+year+"/day"+day+".py")
+file_test = Path(__file__).parent.joinpath("aoc_"+year+"/day"+day+"_test.py")
 
 if not path_folder.is_dir():
     print('Failed to find folder: ' + path_folder.__str__())
@@ -55,7 +58,7 @@ test_data = day{day}.parse(\""" \""")
 def test_day{day}():
     assert day{day}.part1(test_data) == 1
     #assert day{day}.part2(test_data) == 1
-""".format(year=sys.argv[1], day=sys.argv[2]))
+""".format(year=year, day=day))
     
-print(f"https://adventofcode.com/{sys.argv[1]}/day/{sys.argv[2]}")
-print(f"https://adventofcode.com/{sys.argv[1]}/day/{sys.argv[2]}/input")
+print(f"https://adventofcode.com/{year}/day/{day}")
+print(f"https://adventofcode.com/{year}/day/{day}/input")
