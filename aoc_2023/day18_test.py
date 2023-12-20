@@ -18,4 +18,4 @@ U 2 (#7a21e3)""")
 
 def test_day18():
     assert day18.part1(test_data) == 62
-    assert day18.part2(test_data) == 1
+    assert day18.part2(test_data) == 952408144115
