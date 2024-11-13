@@ -12,7 +12,6 @@ egadfb cdbfeg cegd fecab cgb gbdefca cg fgcdab egfdb bfceg | gbdfcae bgc cg cgb
 gcafb gcf dcaebfg ecagb gf abcdeg gaef cafbge fdbac fegbdc | fgae cfgab fg bagce""")
 
 def test_phase1():
-    print(test_data)
     assert day.phase1(test_data) == 26
 
 def test_phase2():

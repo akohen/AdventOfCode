@@ -27,4 +27,4 @@ test_data = day23.parse("""#.#####################
 
 def test_day23():
     assert day23.part1(test_data) == 94
-    assert day23.part2(test_data) == 1
+    assert day23.part2(test_data) == 154
