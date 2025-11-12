@@ -9,7 +9,7 @@ def part1(data):
 def part2(data):
     boxes = [{} for _ in range(256)]
     for s in data:       
-        label, op, val = re.match('(\w+)(=|-)(\d*)', s).groups()
+        label, op, val = re.match(r'(\w+)(=|-)(\d*)', s).groups()
         box_id = reduce(lambda a,c:(a+ord(c))*17%256, label, 0)
         if op == '=':
             boxes[box_id][label] = int(val)
