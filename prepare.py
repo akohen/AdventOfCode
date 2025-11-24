@@ -1,4 +1,6 @@
 import sys
+import os
+from urllib import request
 from datetime import date
 from pathlib import Path
 
@@ -13,6 +15,7 @@ if len(sys.argv) not in [1,3] or not str.isdigit(year) or not str.isdigit(day):
 path_folder = Path(__file__).parent.joinpath("aoc_"+year)
 file_code = Path(__file__).parent.joinpath("aoc_"+year+"/day"+day+".py")
 file_test = Path(__file__).parent.joinpath("aoc_"+year+"/day"+day+"_test.py")
+file_input = Path(__file__).parent.joinpath("aoc_"+year+"/input/day"+day)
 
 if not path_folder.is_dir():
     print('Failed to find folder: ' + path_folder.__str__())
@@ -25,6 +28,17 @@ if file_code.is_file():
 if file_test.is_file():
     print('File ' + file_test.__str__() + ' already exists')
     exit(-1)
+
+if not file_input.is_file() and os.environ.get('AOC_COOKIE'):
+    response = request.urlopen(request.Request(
+        url=f"https://adventofcode.com/{year}/day/{day}/input",
+        headers={"Cookie": f"session={os.environ.get('AOC_COOKIE')}"}
+    ))
+    if response.status == 200:
+        with file_input.open('w', encoding="utf-8") as f:
+            f.write(response.read().decode('utf-8'))
+    else:
+        print(f"Failed to download input, status code {response.status}")
 
 with file_code.open('w', encoding="utf-8") as f:
     f.write("""from pathlib import Path
