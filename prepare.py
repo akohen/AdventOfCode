@@ -36,7 +36,7 @@ if not file_input.is_file() and os.environ.get('AOC_COOKIE'):
     ))
     if response.status == 200:
         with file_input.open('w', encoding="utf-8") as f:
-            f.write(response.read().decode('utf-8'))
+            f.write(response.read().decode('utf-8').strip())
     else:
         print(f"Failed to download input, status code {response.status}")
 
